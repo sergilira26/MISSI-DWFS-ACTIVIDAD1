@@ -1,0 +1,300 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    @apply h-full;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    @apply min-h-full bg-slate-950 text-slate-100 antialiased overflow-x-hidden;
+  }
+
+  a {
+    @apply text-sky-300 hover:text-sky-200;
+  }
+}
+
+/* BEM + Tailwind: clases semánticas para cumplir la metodología sin renunciar a utilidades. */
+@layer components {
+  .layout {
+    @apply min-h-screen flex flex-col;
+  }
+  .layout__header {
+    @apply sticky top-0 z-30 backdrop-blur bg-slate-950/80 border-b border-slate-800;
+  }
+  .layout__main {
+    @apply flex-1;
+  }
+  .layout__container {
+    @apply mx-auto w-full max-w-6xl px-4;
+  }
+
+  .header {
+    @apply flex items-center justify-between py-3 md:py-4;
+  }
+  .header__brand {
+    @apply flex items-center gap-3;
+  }
+  .header__title {
+    @apply text-lg font-semibold tracking-wide;
+  }
+  .header__nav {
+    @apply flex items-center gap-2;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition;
+  }
+  .btn--primary {
+    @apply bg-amber-300 text-slate-900 hover:bg-amber-200;
+  }
+  .btn--ghost {
+    @apply bg-transparent text-slate-100 hover:bg-slate-800;
+  }
+  .btn--danger {
+    @apply bg-rose-500/15 text-rose-200 hover:bg-rose-500/25;
+  }
+  .badge {
+    @apply inline-flex items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold bg-slate-800 text-slate-200;
+  }
+
+  .landing {
+    @apply flex-1;
+  }
+  .landing__hero {
+    @apply mx-auto w-full max-w-4xl px-4 py-12 md:py-16 text-center;
+  }
+  .landing__kicker {
+    @apply text-sm uppercase tracking-[0.2em] text-slate-400;
+  }
+  .landing__title {
+    @apply mt-4 text-3xl md:text-4xl font-bold leading-tight;
+  }
+  .landing__lead {
+    @apply mt-3 md:mt-4 text-base text-slate-300;
+  }
+  .landing__actions {
+    @apply mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 justify-center;
+  }
+  .landing__note {
+    @apply mt-6 md:mt-8 text-sm text-slate-400;
+  }
+
+  .page {
+    @apply mx-auto w-full max-w-6xl px-4 py-6 md:py-8;
+  }
+  .page__title {
+    @apply text-2xl font-semibold;
+  }
+  .page__subtitle {
+    @apply mt-1 text-slate-300;
+  }
+
+  .search-bar {
+    @apply mt-6 flex items-center gap-3;
+  }
+  .search-bar__input {
+    @apply w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-300/60;
+  }
+
+  .book-grid {
+    @apply mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .book-card {
+    @apply rounded-lg border border-slate-800 bg-slate-900/60 shadow-lg hover:border-slate-700 transition cursor-pointer;
+  }
+  .book-card__body {
+    @apply p-4 flex flex-col h-full;
+  }
+  .book-card__title {
+    @apply text-lg font-semibold;
+  }
+  .book-card__meta {
+    @apply mt-1 text-sm text-slate-300;
+  }
+  .book-card__footer {
+    @apply mt-auto pt-4 flex items-center justify-between;
+  }
+  .book-card__price {
+    @apply text-amber-200 font-semibold;
+  }
+  .book-card__cover {
+    @apply h-32 sm:h-36 lg:h-40 rounded-md border overflow-hidden bg-slate-900;
+  }
+  .book-card__cover-img {
+    @apply h-full w-full object-cover;
+  }
+  .book-card__cover-fallback {
+    @apply h-full w-full bg-gradient-to-br;
+  }
+  .book-card--skeleton {
+    @apply cursor-default pointer-events-none;
+  }
+  .book-card__skeleton-line {
+    @apply rounded bg-slate-800;
+  }
+
+  .book-detail {
+    @apply mt-8 grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)];
+  }
+  .book-detail__card {
+    @apply rounded-lg border border-slate-800 bg-slate-900/60 shadow-lg min-w-0;
+  }
+  .book-detail__body {
+    @apply p-5;
+  }
+  .book-detail__author {
+    @apply mt-1 text-slate-300;
+  }
+  .book-detail__description {
+    @apply mt-4 text-slate-200 leading-relaxed;
+  }
+  .book-detail__aside {
+    @apply rounded-lg border border-slate-800 bg-slate-900/60 shadow-lg p-5 h-fit lg:sticky lg:top-24 min-w-0;
+  }
+  .book-detail__price {
+    @apply text-2xl font-bold text-amber-200;
+  }
+  .book-detail__cover {
+    @apply w-full h-56 rounded-md border border-slate-800 object-cover;
+  }
+  .book-detail__aside-label {
+    @apply text-slate-300;
+  }
+  .book-detail__aside-subtotal {
+    @apply mt-1 text-sm text-slate-300;
+  }
+  .book-detail__aside-subtotal-value {
+    @apply font-semibold text-slate-100;
+  }
+
+  .book-detail__qty {
+    @apply mt-5 space-y-2;
+  }
+  .book-detail__qty-row {
+    @apply flex items-center justify-between gap-4;
+  }
+  .book-detail__qty-controls {
+    @apply inline-flex items-center rounded-md border border-slate-800 bg-slate-900/60 overflow-hidden;
+  }
+  .book-detail__qty-btn {
+    @apply px-3 py-2 text-slate-100 hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .book-detail__qty-value {
+    @apply w-10 text-center text-sm font-semibold;
+  }
+
+  .book-detail__perks {
+    @apply mt-5 space-y-2;
+  }
+  .book-detail__perk {
+    @apply flex items-start gap-2 text-sm text-slate-300;
+  }
+  .book-detail__perk-dot {
+    @apply mt-2 h-1.5 w-1.5 rounded-full bg-amber-200;
+  }
+
+  .book-detail__reco {
+    @apply mt-6;
+  }
+  .book-detail__reco-title {
+    @apply text-sm font-semibold text-slate-200;
+  }
+  .book-detail__reco-list {
+    @apply mt-3 space-y-2;
+  }
+  .book-detail__reco-item {
+    @apply flex items-center gap-3 rounded-md border border-slate-800 bg-slate-900/60 px-3 py-2 hover:border-slate-700 transition;
+  }
+  .book-detail__reco-cover {
+    @apply h-10 w-14 rounded border border-slate-800 object-cover flex-none;
+  }
+  .book-detail__reco-name {
+    @apply min-w-0 flex-1 text-sm font-medium truncate;
+  }
+  .book-detail__reco-price {
+    @apply text-sm font-semibold text-amber-200;
+  }
+
+  .cart-drawer {
+    @apply fixed inset-0 z-50;
+  }
+  .cart-drawer__backdrop {
+    @apply absolute inset-0 bg-black/50;
+  }
+  .cart-drawer__panel {
+    @apply absolute right-0 top-0 h-full w-full max-w-md bg-slate-950 border-l border-slate-800 shadow-lg flex flex-col;
+  }
+  .cart-drawer__header {
+    @apply flex items-center justify-between border-b border-slate-800 p-4;
+  }
+  .cart-drawer__title {
+    @apply text-lg font-semibold;
+  }
+  .cart-drawer__body {
+    @apply flex-1 overflow-auto p-4;
+  }
+  .cart-drawer__footer {
+    @apply border-t border-slate-800 p-4 space-y-3;
+  }
+
+  .cart-item {
+    @apply flex items-start justify-between gap-4 rounded-lg border border-slate-800 bg-slate-900/60 p-3;
+  }
+  .cart-item__title {
+    @apply font-medium;
+  }
+  .cart-item__meta {
+    @apply mt-1 text-sm text-slate-300;
+  }
+  .cart-item__subtotal {
+    @apply mt-2 text-sm text-slate-200;
+  }
+  .cart-item__subtotal-value {
+    @apply font-semibold;
+  }
+  .cart-item__actions {
+    @apply flex items-center gap-2;
+  }
+
+  .checkout {
+    @apply mt-8 grid gap-6 lg:grid-cols-[2fr_1fr];
+  }
+  .checkout__card {
+    @apply rounded-lg border border-slate-800 bg-slate-900/60 shadow-lg;
+  }
+  .checkout__body {
+    @apply p-5;
+  }
+  .checkout__line {
+    @apply flex items-center justify-between py-2 border-b border-slate-800 last:border-b-0;
+  }
+  .checkout__label {
+    @apply text-slate-300;
+  }
+  .checkout__value {
+    @apply font-medium;
+  }
+
+  .empty-state {
+    @apply rounded-lg border border-slate-800 bg-slate-900/60 p-6;
+  }
+  .empty-state__title {
+    @apply text-lg font-semibold;
+  }
+  .empty-state__description {
+    @apply mt-2 text-slate-300;
+  }
+  .empty-state__actions {
+    @apply mt-4;
+  }
+
+  .footer {
+    @apply py-6 md:py-10;
+  }
+  .footer__text {
+    @apply text-sm text-slate-400;
+  }
+}
